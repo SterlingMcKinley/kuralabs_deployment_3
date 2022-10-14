@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage ('Build') {
+        stage('Build') {
             steps {
                 sh '''#!/bin/bash
                 python3 -m venv test3
@@ -13,7 +13,7 @@ pipeline {
                 '''
             }
         }
-        stage ('test') {
+        stage('test') {
             steps {
                 sh '''#!/bin/bash
                 source test3/bin/activate
@@ -29,7 +29,7 @@ pipeline {
             }
         }
     }
-    stage ('Clean') {
+    stage('Clean') {
         agent {label 'awsDeploy'}
         steps {
             sh '''#!/bin/bash
@@ -42,7 +42,7 @@ pipeline {
             '''
         }
     }
-    stage ('Deploy') {
+    stage('Deploy') {
         agent {label 'awsDeploy'}
         steps {
             keepRunning {
